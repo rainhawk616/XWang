@@ -1,0 +1,35 @@
+extends ../searchlayout
+
+block content
+    .col-md-6
+        table
+            thead
+            tbody
+                // name
+                +stringField('Name', 'name')
+                //type
+                +typeField('Type', 'type', types)
+                //points
+                +numberField('Points', 'points')
+                //restrictions
+                +typeField('Restrictions', 'restrictions', restrictions)
+                //wave
+                +typeField('Wave', 'wave', waves)
+                //text
+                +stringField('Text', 'text')
+                //dice
+                +numberField('Dice', 'dice')
+                //range
+                +numberField('Range', 'range')
+                //deploy
+                +typeField('Deploy', 'deploy', deploys)
+                //energy capacity
+                +numberField('Energy Capacity', 'energycapacity')
+                //perattack
+                +numberField('Per Attack', 'perattack')
+    .col-md-6
+        .col-md-12
+            input(type='button' onclick='search()' value='Search').btn.btn-default
+        .col-md-12
+            pre(id='query')
+    script(src='/js/query.js')

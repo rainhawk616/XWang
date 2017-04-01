@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+    .row
+        .hidden-sm.col-md-4
+            - var stringify = JSON.stringify(query, null, 2);
+            pre=stringify
+        .col-sm-12.col-md-8
+            table.table
+                thead
+                tbody
+                    for upgrade in upgrades
+                        tr
+                            td
+                                - var stringify = JSON.stringify(upgrade, null, 2);
+                                pre=stringify

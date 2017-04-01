@@ -1,0 +1,62 @@
+extends layout
+
+mixin numberField(fieldName, dbFieldName)
+  tr.field(data-field='#{dbFieldName}')
+    td.text-right
+      label=fieldName+':'
+    td
+      select.bool
+        option(value='&') And
+        option(value='|') Or
+        option(value='!') Not
+    td
+      select.operator
+        option(value='=') =
+        option(value='<') <
+        option(value='<=') <=
+        option(value='>') >
+        option(value='>=') >=
+        option(value='!=') !=
+    td
+      input.value(type='number')
+    td
+      a.btn.btn-default.addnumber
+        .glyphicon.glyphicon-plus
+
+mixin stringField(fieldName, dbFieldName)
+  tr.field(data-field='#{dbFieldName}')
+    td.text-right
+      label=fieldName+':'
+    td
+      select.bool
+        option(value='&') And
+        option(value='|') Or
+        option(value='!') Not
+    td like
+    td
+      input.value(type='text')
+    td
+      a.btn.btn-default.addstring
+        .glyphicon.glyphicon-plus
+
+mixin typeField(fieldName, dbFieldName, types)
+  tr.field(data-field='#{dbFieldName}')
+    td.text-right
+      label=fieldName+':'
+    td
+      select.bool
+        option(value='&') And
+        option(value='|') Or
+        option(value='!') Not
+    td like
+    td
+      select.value
+        option(value='')
+        for type in types
+          option(value=type.description) #{type.description}
+    td
+      a.btn.btn-default.addtype
+        .glyphicon.glyphicon-plus
+
+block content
+script(src='/js/query.js')
