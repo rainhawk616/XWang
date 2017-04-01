@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www.js"
+    "start": "node ./bin/www.js",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -17,5 +18,8 @@
     "pg": "^6.1.2",
     "pg-promise": "^5.6.3",
     "serve-favicon": "~2.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
   }
 }

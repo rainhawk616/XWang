@@ -293,22 +293,21 @@ const queryGenerator = {
       + " FROM upgrades "
       + " WHERE 1=1 ";
 
-    queryString += parseType('name', query, parameters);
+    queryString += parseString('name', query, parameters);
     queryString += parseType('type', query, parameters);
     queryString += parseInt('points', query, parameters);
+    queryString += parseType('restrictions', query, parameters);
     queryString += parseType('wave', query, parameters);
     queryString += parseString('text', query, parameters);
     queryString += parseInt('dice', query, parameters);
     queryString += parseString('range', query, parameters);
     queryString += parseType('deploy', query, parameters);
-    queryString += parseInt('enerycapacity', query, parameters);
+    queryString += parseInt('energycapacity', query, parameters);
     queryString += parseInt('perattack', query, parameters);
 
     //..add order by clauses
 
     queryString += " LIMIT 25;";
-
-    console.log("query: ", queryString);
 
     return {querystring: queryString, parameters: parameters};
   }

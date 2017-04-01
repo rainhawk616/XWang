@@ -5,6 +5,8 @@ block content
         .hidden-sm.col-md-4
             - var stringify = JSON.stringify(query, null, 2);
             pre=stringify
+            - var stringify = JSON.stringify(querystring, null, 2);
+            pre=stringify
         .col-sm-12.col-md-8
             table.table
                 thead
