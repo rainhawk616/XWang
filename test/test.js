@@ -1,5 +1,5 @@
 const assert = require('assert');
-const qg = require('../middleware/queryGenerator');
+const qg = require('../utils/queryGenerator');
 
 describe('Array', function() {
   describe('#indexOf()', function() {

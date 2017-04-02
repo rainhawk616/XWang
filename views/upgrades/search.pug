@@ -1,4 +1,4 @@
-extends ../searchlayout
+extends ../layoutsearch
 
 block content
     .col-md-6
@@ -20,7 +20,7 @@ block content
                 //dice
                 +numberField('Dice', 'dice')
                 //range
-                +textField('Range', 'range')
+                +stringField('Range', 'range')
                 //deploy
                 +typeField('Deploy', 'deploy', deploys)
                 //energy capacity

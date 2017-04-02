@@ -3,14 +3,14 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db');
-const qg = require('../middleware/queryGenerator');
+const qg = require('../utils/queryGenerator');
 
 /**
  * GET search page
  */
-router.get('/search', function(req, res, next) {
+router.get('/search', function(req, res) {
   db.db.tx(t => {
-    const types = t.many("select distinct data ->> 'type' as description from upgrades order by description asc;");
+    const types = t.many('select distinct data ->> \'type\' as description  from upgrades order by description asc;');
     const restrictions = t.many('select distinct data ->> \'restrictions\' as description  from upgrades order by description asc;');
     const waves = t.many('select distinct data ->> \'wave\'  as description from upgrades order by description asc;');
     const deploys = t.many('select distinct data ->> \'deploy\'  as description from upgrades order by description asc;');
@@ -18,17 +18,12 @@ router.get('/search', function(req, res, next) {
     return t.batch([types, restrictions, waves, deploys]);
   })
     .then(data => {
-      console.log(JSON.stringify(data[0],null,2));
-      console.log(JSON.stringify(data[1],null,2));
-      console.log(JSON.stringify(data[2],null,2));
-      console.log(JSON.stringify(data[3],null,2));
-
       let i = 0;
       res.render('upgrades/search', {
         types: data[i++],
         restrictions: data[i++],
         waves: data[i++],
-        deploys: data[i++],
+        deploys: data[i],
       });
     })
     .catch(error => {

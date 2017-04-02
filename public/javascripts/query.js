@@ -49,7 +49,7 @@ function addNumber(event) {
   value.val('');
 }
 
-function addString(event) {
+function addString() {
   console.log('this', this);
 
   let inputGroup = $(this).closest('.field');
@@ -109,13 +109,13 @@ function search() {
 }
 
 
-function addFloat(event) {
-  console.log('event', event);
-  console.log('this', this);
-
-  query.cmc = {'&': [], '|': [], '!': []};
-  query.cmc['&'].push({op: '-', val: 1});
-}
+// function addFloat(event) {
+//   console.log('event', event);
+//   console.log('this', this);
+//
+//   query.cmc = {'&': [], '|': [], '!': []};
+//   query.cmc['&'].push({op: '-', val: 1});
+// }
 
 $(document).ready(function () {
   $('.addnumber').click(addNumber);
@@ -124,12 +124,12 @@ $(document).ready(function () {
 
 
   $('.value').keyup(function (event) {
-    if (event.keyCode == 13) {
+    if (event.keyCode === 13) {
       $(this).closest('.field').find('.btn').click();
     }
   });
 
-  $("#form").submit(function (event) {
+  $("#form").submit(function () {
     $('.addString').click();
     $('.addInt').click();
     $('.addType').click();

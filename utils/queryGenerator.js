@@ -1,40 +1,5 @@
 'use strict';
 
-/**
- * @typedef {object} expression
- * @property {string} op
- * @property {string} val
- */
-
-/**
- * @typedef {object} field
- * @property {expression} &
- * @property {expression} |
- * @property {expression} !
- */
-
-/**
- * @typedef {object} query
- * @property {field} name
- * @property {field} type
- * @property {field} points
- * @property {field} restrictions
- * @property {field} wave
- * @property {field} text
- * @property {field} dice
- * @property {field} range
- * @property {field} deploy
- * @property {field} energycapacity
- * @property {field} perattack
- */
-
-/**
- *
- * @param {string} fieldName
- * @param {query} query
- * @param parameters
- * @returns {string}
- */
 function parseInt(fieldName, query, parameters) {
   let queryString = "";
 
@@ -138,13 +103,6 @@ function parseInt(fieldName, query, parameters) {
 //   return queryString;
 // }
 
-/**
- *
- * @param {string} fieldName
- * @param {query} query
- * @param parameters
- * @returns {string}
- */
 function parseString(fieldName, query, parameters) {
   let queryString = "";
 
@@ -196,13 +154,6 @@ function parseString(fieldName, query, parameters) {
   return queryString;
 }
 
-/**
- *
- * @param {string} fieldName
- * @param {query} query
- * @param parameters
- * @returns {string}
- */
 function parseType(fieldName, query, parameters) {
   let queryString = "";
 
@@ -277,16 +228,7 @@ function parseType(fieldName, query, parameters) {
 //   return queryString;
 // }
 
-/**
- *
- * @type {{upgrade: queryGenerator.upgrade}}
- */
 const queryGenerator = {
-  /**
-   *
-   * @param {query} query
-   * @returns {{querystring: string, parameters: Array}}
-   */
   upgrade: function (query) {
     const parameters = [];
     let queryString = "SELECT data "
@@ -310,7 +252,16 @@ const queryGenerator = {
     queryString += " LIMIT 25;";
 
     return {querystring: queryString, parameters: parameters};
+  },
+  /**
+   *
+   * @param table
+   * @param field
+   * @returns {{querystring: string, parameters: Array}}
+   */
+  type: function(table, field) {
+    return {querystring: "select distinct data ->> $2 as description from $1~ order by description asc;", parameters: [table,field]};
   }
 };
 
-module.exports = (queryGenerator);
+module.exports = queryGenerator;
