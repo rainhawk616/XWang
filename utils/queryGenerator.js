@@ -229,6 +229,11 @@ function parseType(fieldName, query, parameters) {
 // }
 
 const queryGenerator = {
+  /**
+   *
+   * @param query
+   * @returns {{queryString: string, parameters: Array}}
+   */
   upgrade: function (query) {
     const parameters = [];
     let queryString = "SELECT data "
@@ -249,18 +254,17 @@ const queryGenerator = {
 
     //..add order by clauses
 
-    queryString += " LIMIT 25;";
+    queryString += ";";
 
-    return {querystring: queryString, parameters: parameters};
+    return {queryString: queryString, parameters: parameters};
   },
   /**
    *
-   * @param table
-   * @param field
-   * @returns {{querystring: string, parameters: Array}}
+   * @param type {{table: string, column: string}}
+   * @returns {{queryString: string, parameters: [*,*]}}
    */
-  type: function(table, field) {
-    return {querystring: "select distinct data ->> $2 as description from $1~ order by description asc;", parameters: [table,field]};
+  type: function(type) {
+    return {queryString: "select distinct data ->> $2 as description from $1~ order by description asc;", parameters: [type.table,type.column]};
   }
 };
 

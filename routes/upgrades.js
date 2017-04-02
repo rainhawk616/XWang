@@ -5,17 +5,35 @@ const router = express.Router();
 const db = require('../config/db');
 const qg = require('../utils/queryGenerator');
 
-/**
- * GET search page
- */
-router.get('/search', function(req, res) {
-  db.db.tx(t => {
-    const types = t.many('select distinct data ->> \'type\' as description  from upgrades order by description asc;');
-    const restrictions = t.many('select distinct data ->> \'restrictions\' as description  from upgrades order by description asc;');
-    const waves = t.many('select distinct data ->> \'wave\'  as description from upgrades order by description asc;');
-    const deploys = t.many('select distinct data ->> \'deploy\'  as description from upgrades order by description asc;');
+router.get('/', function (req, res) {
+  const query = qg.upgrade({});
 
-    return t.batch([types, restrictions, waves, deploys]);
+  db.db.manyOrNone(query.queryString, query.parameters)
+    .then(function (upgrades) {
+      res.render('upgrades/all', {upgrades: upgrades});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+router.get('/search', function (req, res) {
+  const types = [
+    {table: 'upgrades', column: 'type'},
+    {table: 'upgrades', column: 'restrictions'},
+    {table: 'upgrades', column: 'wave'},
+    {table: 'upgrades', column: 'deploy'},
+  ];
+
+  db.db.tx(t => {
+    const queries = [];
+
+    for (let i = 0; i < types.length; i++) {
+      const typeQuery = qg.type(types[i]);
+      queries.push(t.many(typeQuery.queryString, typeQuery.parameters));
+    }
+
+    return t.batch(queries);
   })
     .then(data => {
       let i = 0;
@@ -39,27 +57,16 @@ router.get('/list', function (req, res) {
 
   const query = qg.upgrade(queryObject);
 
-  console.log(JSON.stringify(query,null,2));
+  console.log(JSON.stringify(query, null, 2));
 
-  db.db.manyOrNone(query.querystring , query.parameters)
+  db.db.manyOrNone(query.queryString, query.parameters)
     .then(function (upgrades) {
-      console.log(upgrades);
 
-      res.render('upgrades/list', {upgrades: upgrades, query:queryObject, querystring: query.querystring});
+      res.render('upgrades/results', {upgrades: upgrades, query: queryObject, queryString: query.queryString});
     })
     .catch(function (error) {
       console.log(error);
     });
 });
-
-// router.get('/', function(req, res, next) {
-//   db.db.manyOrNone("select data from upgrades;")
-//     .then(function (upgrades) {
-//       res.render('upgrades', {upgrades: upgrades});
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-// });
 
 module.exports = router;
