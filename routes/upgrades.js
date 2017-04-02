@@ -10,7 +10,7 @@ router.get('/', function (req, res) {
 
   db.db.manyOrNone(query.queryString, query.parameters)
     .then(function (upgrades) {
-      res.render('upgrades/all', {upgrades: upgrades});
+      res.render('upgrade/all', {upgrades: upgrades});
     })
     .catch(function (error) {
       console.log(error);
@@ -37,7 +37,7 @@ router.get('/search', function (req, res) {
   })
     .then(data => {
       let i = 0;
-      res.render('upgrades/search', {
+      res.render('upgrade/search', {
         types: data[i++],
         restrictions: data[i++],
         waves: data[i++],
@@ -62,7 +62,7 @@ router.get('/list', function (req, res) {
   db.db.manyOrNone(query.queryString, query.parameters)
     .then(function (upgrades) {
 
-      res.render('upgrades/results', {upgrades: upgrades, query: queryObject, queryString: query.queryString});
+      res.render('upgrade/results', {upgrades: upgrades, query: queryObject, queryString: query.queryString});
     })
     .catch(function (error) {
       console.log(error);

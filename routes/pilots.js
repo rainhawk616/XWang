@@ -28,7 +28,7 @@ router.get('/search', function (req, res) {
   })
     .then(data => {
       let i = 0;
-      res.render('upgrades/search', {
+      res.render('upgrade/search', {
         types: data[i++],
         restrictions: data[i++],
         waves: data[i++],
@@ -54,7 +54,7 @@ router.get('/list', function (req, res) {
     .then(function (upgrades) {
       console.log(upgrades);
 
-      res.render('upgrades/list', {upgrades: upgrades, query: queryObject, queryString: query.queryString});
+      res.render('upgrade/list', {upgrades: upgrades, query: queryObject, queryString: query.queryString});
     })
     .catch(function (error) {
       console.log(error);

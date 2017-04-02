@@ -237,7 +237,7 @@ const queryGenerator = {
   upgrade: function (query) {
     const parameters = [];
     let queryString = "SELECT data "
-      + " FROM upgrades "
+      + " FROM upgrade "
       + " WHERE 1=1 ";
 
     queryString += parseString('name', query, parameters);

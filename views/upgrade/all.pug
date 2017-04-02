@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  .row
+    .col-xs-12
+      a(href='upgrade/add').btn.btn-primary Add Upgrade
+  .row
+    .col-xs-12
+      table.table
+        thead
+        tbody
+          for upgrade in upgrades
+            tr
+              td
+                - var stringify = JSON.stringify(upgrade, null, 2);
+                pre=stringify
+              td
+                a(href='upgrade/edit/' + encodeURIComponent(upgrade.data.name)).btn.btn-default
+                  .glyphicon.glyphicon-pencil

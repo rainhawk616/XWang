@@ -12,7 +12,7 @@ describe('Array', function() {
 describe('queryGenerator.upgrade()', function() {
 
   it('empty query', function() {
-    assert.equal(qg.upgrade({}).queryString, 'SELECT data  FROM upgrades  WHERE 1=1 ;');
+    assert.equal(qg.upgrade({}).queryString, 'SELECT data  FROM upgrade  WHERE 1=1 ;');
   });
 
   describe('#name', function() {
@@ -25,7 +25,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'name') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'name') ilike $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -36,7 +36,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'name') ilike $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'name') ilike $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -47,7 +47,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'name') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'name') ilike $1 ;");
     });
   });
 
@@ -61,7 +61,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data -> 'type') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data -> 'type') ? $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -72,7 +72,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data -> 'type') ? $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data -> 'type') ? $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -83,7 +83,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data -> 'type') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data -> 'type') ? $1 ;");
     });
   });
 
@@ -99,7 +99,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -111,7 +111,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -123,7 +123,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -135,7 +135,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -147,7 +147,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -159,7 +159,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'points')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'points')::int != $1 ;");
       });
     });
     describe('OR', function() {
@@ -173,7 +173,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int = $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int = $1      ) ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -185,7 +185,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int < $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int < $1      ) ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -197,7 +197,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int <= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int <= $1      ) ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -209,7 +209,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int > $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int > $1      ) ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -221,7 +221,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int >= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int >= $1      ) ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -233,7 +233,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'points')::int != $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'points')::int != $1      ) ;");
       });
     });
     describe('NOT', function() {
@@ -247,7 +247,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -259,7 +259,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -271,7 +271,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -283,7 +283,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -295,7 +295,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -307,7 +307,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'points')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'points')::int != $1 ;");
       });
     });
   });
@@ -322,7 +322,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data -> 'restrictions') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data -> 'restrictions') ? $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -333,7 +333,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data -> 'restrictions') ? $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data -> 'restrictions') ? $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -344,7 +344,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data -> 'restrictions') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data -> 'restrictions') ? $1 ;");
     });
   });
 
@@ -358,7 +358,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data -> 'wave') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data -> 'wave') ? $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -369,7 +369,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data -> 'wave') ? $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data -> 'wave') ? $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -380,7 +380,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data -> 'wave') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data -> 'wave') ? $1 ;");
     });
   });
 
@@ -394,7 +394,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'text') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'text') ilike $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -405,7 +405,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'text') ilike $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'text') ilike $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -416,7 +416,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'text') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'text') ilike $1 ;");
     });
   });
 
@@ -432,7 +432,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -444,7 +444,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -456,7 +456,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -468,7 +468,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -480,7 +480,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -492,7 +492,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'dice')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'dice')::int != $1 ;");
       });
     });
     describe('OR', function() {
@@ -506,7 +506,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int = $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int = $1      ) ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -518,7 +518,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int < $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int < $1      ) ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -530,7 +530,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int <= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int <= $1      ) ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -542,7 +542,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int > $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int > $1      ) ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -554,7 +554,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int >= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int >= $1      ) ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -566,7 +566,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'dice')::int != $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'dice')::int != $1      ) ;");
       });
     });
     describe('NOT', function() {
@@ -580,7 +580,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -592,7 +592,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -604,7 +604,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -616,7 +616,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -628,7 +628,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -640,7 +640,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'dice')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'dice')::int != $1 ;");
       });
     });
   });
@@ -655,7 +655,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'range') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'range') ilike $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -666,7 +666,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'range') ilike $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'range') ilike $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -677,7 +677,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'range') ilike $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'range') ilike $1 ;");
     });
   });
 
@@ -691,7 +691,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data -> 'deploy') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data -> 'deploy') ? $1 ;");
     });
     it('OR', function () {
       assert.equal(qg.upgrade({
@@ -702,7 +702,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data -> 'deploy') ? $1      ) ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data -> 'deploy') ? $1      ) ;");
     });
     it('NOT', function () {
       assert.equal(qg.upgrade({
@@ -713,7 +713,7 @@ describe('queryGenerator.upgrade()', function() {
             }
           ]
         }
-      }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data -> 'deploy') ? $1 ;");
+      }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data -> 'deploy') ? $1 ;");
     });
   });
 
@@ -729,7 +729,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -741,7 +741,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -753,7 +753,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -765,7 +765,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -777,7 +777,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -789,7 +789,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'energycapacity')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'energycapacity')::int != $1 ;");
       });
     });
     describe('OR', function() {
@@ -803,7 +803,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int = $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int = $1      ) ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -815,7 +815,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int < $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int < $1      ) ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -827,7 +827,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int <= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int <= $1      ) ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -839,7 +839,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int > $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int > $1      ) ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -851,7 +851,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int >= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int >= $1      ) ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -863,7 +863,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'energycapacity')::int != $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'energycapacity')::int != $1      ) ;");
       });
     });
     describe('NOT', function() {
@@ -877,7 +877,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -889,7 +889,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -901,7 +901,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -913,7 +913,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -925,7 +925,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -937,7 +937,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'energycapacity')::int != $1 ;");
       });
     });
   });
@@ -954,7 +954,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -966,7 +966,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -978,7 +978,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -990,7 +990,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -1002,7 +1002,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -1014,7 +1014,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (data ->> 'perattack')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (data ->> 'perattack')::int != $1 ;");
       });
     });
     describe('OR', function() {
@@ -1028,7 +1028,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int = $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int = $1      ) ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -1040,7 +1040,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int < $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int < $1      ) ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -1052,7 +1052,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int <= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int <= $1      ) ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -1064,7 +1064,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int > $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int > $1      ) ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -1076,7 +1076,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int >= $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int >= $1      ) ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -1088,7 +1088,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND (       (data ->> 'perattack')::int != $1      ) ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND (       (data ->> 'perattack')::int != $1      ) ;");
       });
     });
     describe('NOT', function() {
@@ -1102,7 +1102,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int = $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int = $1 ;");
       });
       it('<', function () {
         assert.equal(qg.upgrade({
@@ -1114,7 +1114,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int < $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int < $1 ;");
       });
       it('<=', function () {
         assert.equal(qg.upgrade({
@@ -1126,7 +1126,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int <= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int <= $1 ;");
       });
       it('>', function () {
         assert.equal(qg.upgrade({
@@ -1138,7 +1138,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int > $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int > $1 ;");
       });
       it('>=', function () {
         assert.equal(qg.upgrade({
@@ -1150,7 +1150,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int >= $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int >= $1 ;");
       });
       it('!=', function () {
         assert.equal(qg.upgrade({
@@ -1162,7 +1162,7 @@ describe('queryGenerator.upgrade()', function() {
               }
             ]
           }
-        }).queryString, "SELECT data  FROM upgrades  WHERE 1=1      AND NOT (data ->> 'perattack')::int != $1 ;");
+        }).queryString, "SELECT data  FROM upgrade  WHERE 1=1      AND NOT (data ->> 'perattack')::int != $1 ;");
       });
     });
   });

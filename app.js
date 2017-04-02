@@ -31,7 +31,7 @@ app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/fonts')); 
 
 app.use('/', index);
 app.use('/pilots', pilots);
-app.use('/upgrades', upgrades);
+app.use('/upgrade', upgrades);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
