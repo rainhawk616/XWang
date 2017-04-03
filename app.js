@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const index = require('./routes/index');
 const pilots = require('./routes/pilots');
-const upgrades = require('./routes/upgrades');
+const upgrades = require('./routes/upgrade');
 
 const app = express();
 
