@@ -1,26 +1,12 @@
 CREATE TABLE pilots
 (
     data jsonb
-)
-WITH (
-    OIDS = FALSE
-)
-TABLESPACE pg_default;
-
-ALTER TABLE pilots
-    OWNER to postgres;
+);
 
 CREATE TABLE upgrades
 (
     data jsonb
-)
-WITH (
-    OIDS = false
-)
-TABLESPACE pg_default;
-
-ALTER TABLE upgrades
-    OWNER to postgres;
+);
 
 insert into upgrades (data) values ('{"name":"Determination","type":"Elite Pilot Talent","points":1,"restrictions":"none","wave":"Core Set","text":"When you are dealt a faceup Damage card with the Pilot trait, discard it immediately without resolving its effect."}');
 insert into upgrades (data) values ('{"name":"Marksmanship","type":"Elite Pilot Talent","points":3,"restrictions":"none","wave":"Core Set","text":"Action: When attacking this round, you may change 1 of your focus results to a critical result and all your other focus results to hit results."}');
